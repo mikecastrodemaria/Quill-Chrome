@@ -98,7 +98,34 @@ https://github.com/mikecastrodemaria/Quill-Chrome/blob/main/PRIVACY.md
 No account is needed. Open the extension options, enable "OVHcloud AI Endpoints" (works without an API key, anonymous rate-limited tier) and set it as the active provider. Click the Quill toolbar icon to open the side panel, open any article and click "Summarize".
 ```
 
-## 5. Release notes (0.1.1)
+## 5. Release notes
+
+### 0.2.0
+
+The Chrome Web Store has no release-notes field shown to users: paste these notes in the **Test instructions** box for the reviewer (with the review text below), and add the first line to the top of the description as a "What's new" line if you like.
+
+```
+Version 0.2.0 - Describe the images of a page
+
+- New "Images" button: Quill sends the main images of the page (up to 4, small icons skipped) to your AI model and describes them, including any visible text such as chart titles and figures.
+- Turn on "Page" first to send the page text with the images: the answer relates each image to the article and ends with an overview.
+- New right-click entry on any picture: "Quill: describe this image".
+- Thumbnails of the images appear in your message. Images are resized to 1024 px before sending and are never stored.
+- Needs a model that reads images: Claude, gpt-4o, OVHcloud Mistral-Small-3.2 (free anonymous tier), or Ollama gemma / llava / qwen2.5vl. A clear message tells you when the selected model can't read images.
+- Fix: a request retried after granting page access keeps its images.
+```
+
+**For the reviewer (Test instructions)**
+
+```
+Version 0.2.0 adds image description. No new permission: manifest.json only changes its version number. The new right-click entry uses the "image" context of the existing contextMenus permission.
+
+To test without an account: enable "OVHcloud AI Endpoints" in the options (no API key needed, model Mistral-Small-3.2-24B-Instruct-2506 reads images) and make it the active provider. Open an article with pictures, then click "Images" in the side panel, or right click a picture and choose "Quill: describe this image".
+
+Images are fetched from the page, resized to 1024 px JPEG in the side panel, sent only to the provider chosen by the user, and never written to storage.
+```
+
+### 0.1.1
 
 ```
 First release: AI chat in the side panel with 4 providers, current-page context, quick actions and context menu.
