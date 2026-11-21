@@ -82,8 +82,10 @@ Quill-Chrome/
 ## Package
 
 ```powershell
-Compress-Archive -Path manifest.json,background.js,styles.css,core,sidepanel,options,images,_locales -DestinationPath quill-chrome-0.1.0.zip -Force
+New-Item -ItemType Directory -Force dist | Out-Null; tar.exe -a -cf "dist/quill-chrome-$((Get-Content manifest.json | ConvertFrom-Json).version).zip" manifest.json background.js styles.css core sidepanel options images _locales
 ```
+
+Produces `dist/quill-chrome-<version>.zip` with `manifest.json` at the root. Use `tar.exe` rather than `Compress-Archive`: Windows PowerShell 5.1 writes backslashes in zip paths, which the Chrome Web Store rejects.
 
 ## Publish on the Chrome Web Store
 

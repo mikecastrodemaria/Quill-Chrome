@@ -98,7 +98,7 @@ https://github.com/mikecastrodemaria/Quill-Chrome/blob/main/PRIVACY.md
 No account is needed. Open the extension options, enable "OVHcloud AI Endpoints" (works without an API key, anonymous rate-limited tier) and set it as the active provider. Click the Quill toolbar icon to open the side panel, open any article and click "Summarize".
 ```
 
-## 5. Release notes (0.1.0)
+## 5. Release notes (0.1.1)
 
 ```
 First release: AI chat in the side panel with 4 providers, current-page context, quick actions and context menu.
@@ -110,7 +110,7 @@ First release: AI chat in the side panel with 4 providers, current-page context,
 |---|---|---|---|
 | Store icon | 128×128 PNG (96×96 artwork + transparent padding) | yes | ✅ `store/store-icon-128.png` (redrawn by `store/draw_icon.py`) |
 | Screenshots | 1280×800 or 640×400, 1 to 5 | at least 1 | to do: panel with an answer, options page, context menu |
-| Small promo tile | 440×280 | yes | to do |
+| Small promo tile | 440×280 | yes | ✅ `store/promo-tile-440x280.png` (`store/draw_tile.py`) |
 | Marquee promo tile | 1400×560 | no | optional |
 
 ## 7. After submission
