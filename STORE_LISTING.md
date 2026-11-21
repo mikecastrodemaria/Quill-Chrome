@@ -108,7 +108,7 @@ First release: AI chat in the side panel with 4 providers, current-page context,
 
 | Asset | Size | Required | Status |
 |---|---|---|---|
-| Store icon | 128×128 PNG (96×96 artwork + transparent padding) | yes | ⚠️ to do — only 16/32/64 px exist; also add it to `manifest.json` → `icons."128"` |
+| Store icon | 128×128 PNG (96×96 artwork + transparent padding) | yes | ✅ `store/store-icon-128.png` (redrawn by `store/draw_icon.py`) |
 | Screenshots | 1280×800 or 640×400, 1 to 5 | at least 1 | to do: panel with an answer, options page, context menu |
 | Small promo tile | 440×280 | yes | to do |
 | Marquee promo tile | 1400×560 | no | optional |
