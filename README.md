@@ -85,6 +85,10 @@ Quill-Chrome/
 Compress-Archive -Path manifest.json,background.js,styles.css,core,sidepanel,options,images,_locales -DestinationPath quill-chrome-0.1.0.zip -Force
 ```
 
+## Publish on the Chrome Web Store
+
+Listing texts, privacy-practices answers and permission justifications: [STORE_LISTING.md](STORE_LISTING.md). Privacy policy: [PRIVACY.md](PRIVACY.md).
+
 ## License
 
 GPL-3.0 — Supersonique Studio SARL.
