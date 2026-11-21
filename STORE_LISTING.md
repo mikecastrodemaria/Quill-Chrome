@@ -100,12 +100,12 @@ No account is needed. Open the extension options, enable "OVHcloud AI Endpoints"
 
 ## 5. Release notes
 
-### 0.2.0
+### 0.2.1
 
 The Chrome Web Store has no release-notes field shown to users: paste these notes in the **Test instructions** box for the reviewer (with the review text below), and add the first line to the top of the description as a "What's new" line if you like.
 
 ```
-Version 0.2.0 - Describe the images of a page
+Version 0.2.1 - Describe the images of a page
 
 - New "Images" button: Quill sends the main images of the page (up to 4, small icons skipped) to your AI model and describes them, including any visible text such as chart titles and figures.
 - Turn on "Page" first to send the page text with the images: the answer relates each image to the article and ends with an overview.
@@ -118,7 +118,7 @@ Version 0.2.0 - Describe the images of a page
 **For the reviewer (Test instructions)**
 
 ```
-Version 0.2.0 adds image description. No new permission: manifest.json only changes its version number. The new right-click entry uses the "image" context of the existing contextMenus permission.
+Version 0.2.1 adds image description. No new permission: manifest.json only changes its version number. The new right-click entry uses the "image" context of the existing contextMenus permission.
 
 To test without an account: enable "OVHcloud AI Endpoints" in the options (no API key needed, model Mistral-Small-3.2-24B-Instruct-2506 reads images) and make it the active provider. Open an article with pictures, then click "Images" in the side panel, or right click a picture and choose "Quill: describe this image".
 
