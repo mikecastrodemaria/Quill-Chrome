@@ -4,6 +4,12 @@ The Quill chat in Chrome's **right-hand side panel** (and other Chromium browser
 
 Full specification: [SPECIFICATION.md](SPECIFICATION.md). Firefox version: [Quill-Firefox](https://github.com/mikecastrodemaria/Quill-Firefox).
 
+![Quill summarizing the current page in the side panel](screenshots/1-summarize.png)
+
+| Explain a selection | Settings |
+|---|---|
+| ![Explain the selected text](screenshots/2-explain-selection.png) | ![Options page](screenshots/3-options.png) |
+
 ## v0.1 features
 
 - Side panel opened from the Quill icon or `Alt+Q`
