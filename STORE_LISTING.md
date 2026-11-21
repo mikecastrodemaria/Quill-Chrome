@@ -140,6 +140,32 @@ First release: AI chat in the side panel with 4 providers, current-page context,
 | Small promo tile | 440×280 | yes | ✅ `store/promo-tile-440x280.png` (`store/draw_tile.py`) |
 | Marquee promo tile | 1400×560 | no | ✅ `store/marquee-1400x560.png` (`store/draw_marquee.py`) |
 
+**Screenshot captions** — the Chrome Web Store has no caption field; upload in this order (or `4-images.png` first to highlight v0.2) and reuse the texts in the description if you like:
+
+`screenshots/1-summarize.png`
+
+```
+Summarize the page you are reading in one click, right in Chrome's side panel.
+```
+
+`screenshots/2-explain-selection.png`
+
+```
+Select a passage and ask Quill to explain it in plain words, from the side panel or the right-click menu.
+```
+
+`screenshots/3-options.png`
+
+```
+Choose your AI provider: Claude, OpenAI, OVHcloud AI Endpoints (free anonymous tier) or Ollama running locally.
+```
+
+`screenshots/4-images.png`
+
+```
+New in 0.2: describe the images of a page. With "Page" on, Quill relates each picture to the article.
+```
+
 ## 7. After submission
 
 - Review usually takes from a few hours to a few days; the broad optional host permission and `scripting` can make it longer.
