@@ -136,7 +136,7 @@ First release: AI chat in the side panel with 4 providers, current-page context,
 | Asset | Size | Required | Status |
 |---|---|---|---|
 | Store icon | 128×128 PNG (96×96 artwork + transparent padding) | yes | ✅ `store/store-icon-128.png` (redrawn by `store/draw_icon.py`) |
-| Screenshots | 1280×800 or 640×400, 1 to 5 | at least 1 | ✅ `screenshots/1-summarize.png`, `2-explain-selection.png`, `3-options.png` (24-bit, no alpha) |
+| Screenshots | 1280×800 or 640×400, 1 to 5 | at least 1 | ✅ `screenshots/1-summarize.png`, `2-explain-selection.png`, `3-options.png`, `4-images.png` (v0.2) (24-bit, no alpha) |
 | Small promo tile | 440×280 | yes | ✅ `store/promo-tile-440x280.png` (`store/draw_tile.py`) |
 | Marquee promo tile | 1400×560 | no | ✅ `store/marquee-1400x560.png` (`store/draw_marquee.py`) |
 

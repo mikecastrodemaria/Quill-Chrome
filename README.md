@@ -6,9 +6,9 @@ Full specification: [SPECIFICATION.md](SPECIFICATION.md). Firefox version: [Quil
 
 ![Quill summarizing the current page in the side panel](screenshots/1-summarize.png)
 
-| Explain a selection | Settings |
-|---|---|
-| ![Explain the selected text](screenshots/2-explain-selection.png) | ![Options page](screenshots/3-options.png) |
+| Describe the page images | Explain a selection | Settings |
+|---|---|---|
+| ![Images and page text described together](screenshots/4-images.png) | ![Explain the selected text](screenshots/2-explain-selection.png) | ![Options page](screenshots/3-options.png) |
 
 ## v0.1 features
 
