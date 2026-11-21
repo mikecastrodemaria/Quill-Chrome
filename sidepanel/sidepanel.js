@@ -37,6 +37,13 @@ let conv = { messages: [], pageSent: "" };
 
 // ---------- Rendering ----------
 
+// renderMarkdown() escapes everything it is given; parse its output instead of
+// assigning innerHTML so nothing is ever executed.
+const setMarkdown = (el, text) => {
+    const doc = new DOMParser().parseFromString(renderMarkdown(text), "text/html");
+    el.replaceChildren(...doc.body.childNodes);
+};
+
 const scrollDown = () => { els.messages.scrollTop = els.messages.scrollHeight; };
 
 const copyText = async (text, button) => {
@@ -58,14 +65,14 @@ const addBubble = (m) => {
     const div = document.createElement("div");
     div.className = `msg ${m.role}`;
     if (m.role === "assistant") {
-        div.innerHTML = renderMarkdown(m.content);
+        setMarkdown(div, m.content);
         const copy = document.createElement("button");
         copy.className = "copy-btn";
         copy.textContent = t(lang, "copy");
         copy.addEventListener("click", () => copyText(m.content, copy));
         div.appendChild(copy);
     } else if (m.role === "info") {
-        div.innerHTML = renderMarkdown(m.content);
+        setMarkdown(div, m.content);
     } else {
         div.textContent = m.display ?? m.content;
         if (m.tag) {
@@ -194,7 +201,9 @@ const send = async (text, { attachPage = els.include.checked, display, tag = "",
 
     const pending = document.createElement("div");
     pending.className = "msg assistant";
-    pending.innerHTML = '<span class="spinner"></span>';
+    const spinner = document.createElement("span");
+    spinner.className = "spinner";
+    pending.appendChild(spinner);
     els.messages.appendChild(pending);
     scrollDown();
 

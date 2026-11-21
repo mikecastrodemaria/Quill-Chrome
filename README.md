@@ -1,63 +1,90 @@
-# ✒️ Quill pour Chrome — v0.1
+# ✒️ Quill for Chrome — v0.1
 
-Le chat Quill dans le **panneau latéral droit** de Chrome (et des navigateurs Chromium : Edge, Brave, Opera, Vivaldi), avec les mêmes fournisseurs que Quill Thunderbird et la possibilité de **discuter avec la page courante**.
+The Quill chat in Chrome's **right-hand side panel** (and other Chromium browsers: Edge, Brave, Opera, Vivaldi), with the same providers as [Quill for Thunderbird](https://github.com/mikecastrodemaria/Quill) and the ability to **talk with the current page**.
 
-Cahier des charges complet : [CAHIER_DES_CHARGES.md](CAHIER_DES_CHARGES.md).
+Full specification: [SPECIFICATION.md](SPECIFICATION.md). Firefox version: [Quill-Firefox](https://github.com/mikecastrodemaria/Quill-Firefox).
 
-## Fonctions de la v0.1
+## v0.1 features
 
-- Panneau latéral ouvert par l'icône Quill ou `Alt+Q`
-- Chat multi-tours, rendu Markdown, bouton Copier, conversation conservée pendant la session
-- Fournisseurs : **Anthropic (Claude)**, **OpenAI**, **OVHcloud AI Endpoints**, **Ollama** (local), avec bascule dans l'en-tête du panneau
-- Carte « page courante » (favicon, titre, URL) qui suit l'onglet actif
-- Interrupteur **Page** : joint le titre, l'URL et le texte de la page à votre message (une seule fois par page)
-- Actions rapides : Résumer, Points clés, Traduire, Expliquer la sélection
-- Clic droit : « Quill : résumer cette page », « expliquer / traduire la sélection »
-- Page d'options : clés, URL, modèles (liste live), test de connexion, langue FR/EN, limites
+- Side panel opened from the Quill icon or `Alt+Q`
+- Multi-turn chat, Markdown rendering, Copy button, conversation kept for the browser session
+- Providers: **Anthropic (Claude)**, **OpenAI**, **OVHcloud AI Endpoints**, **Ollama** (local), switchable from the panel header
+- "Current page" card (favicon, title, URL) following the active tab
+- **Page** toggle: attaches the page title, URL and text to your message (once per page)
+- Quick actions: Summarize, Key points, Translate, Explain selection
+- Right click: "Quill: summarize this page", "explain / translate the selection"
+- Options page: API keys, endpoint URLs, live model lists, connection test, FR/EN interface, limits
 
-## Installation (mode développeur)
+## Install / test (developer mode)
 
-1. Ouvrir `chrome://extensions`
-2. Activer le **Mode développeur** (en haut à droite)
-3. **Charger l'extension non empaquetée** → sélectionner le dossier racine de ce dépôt (celui qui contient `manifest.json`)
-4. Épingler l'icône Quill, ouvrir les **Options** et saisir au moins une clé API
+1. Clone the repository:
+   ```powershell
+   git clone https://github.com/mikecastrodemaria/Quill-Chrome.git
+   ```
+2. Open `chrome://extensions` (or `edge://extensions`).
+3. Turn on **Developer mode** (top right).
+4. Click **Load unpacked** and select the repository root (the folder that contains `manifest.json`).
+5. Pin the Quill icon (puzzle icon → pin).
+6. Right click the Quill icon → **Options**, enable a provider and enter its API key, then **Test connection**.
+7. Click the Quill icon (or press `Alt+Q`): the side panel opens on the right.
+
+After editing the code, click the ↻ **reload** button on the Quill card in `chrome://extensions`, then close and reopen the panel.
+
+### Test checklist
+
+| # | Test | Expected |
+|---|---|---|
+| 1 | Ask "Hello" | An answer appears; a follow-up question keeps the context |
+| 2 | Open a Wikipedia article → **Summarize** | Chrome may ask for site access (**Allow**), then a summary of the article |
+| 3 | Turn on **Page**, ask a question about the article | The answer uses the page content; the message shows a 📄 tag |
+| 4 | Switch tabs | The context card follows the active tab |
+| 5 | Select a paragraph → right click → **Quill: explain the selection** | The panel opens and explains the text |
+| 6 | Open `chrome://settings` | "This page can't be read", chat still works |
+| 7 | Change the provider in the header | The next answer comes from that provider |
+| 8 | Enter a wrong API key and ask something | Clear error message, the question stays in the input |
+
+**Debugging:** right click inside the panel → **Inspect** opens its DevTools (Console + Network). The service worker has its own **Inspect views: service worker** link on the extension card.
 
 ### Ollama
 
-Ollama refuse par défaut les requêtes venant d'une extension. Avant de le lancer :
+Ollama rejects requests from extensions by default. Start it with:
 
 ```powershell
 $env:OLLAMA_ORIGINS = "chrome-extension://*"; ollama serve
 ```
 
-## Accès aux pages
+## Page access
 
-La lecture d'une page n'a lieu que lorsque vous activez **Page** ou lancez une action. Au premier usage, Chrome peut demander l'autorisation de lire les sites : elle est optionnelle et révocable dans `chrome://extensions`. Les pages internes (`chrome://…`) et le Chrome Web Store ne sont jamais lisibles.
+A page is read only when you turn on **Page** or run an action. On first use Chrome may ask for permission to read sites: it is optional and can be revoked in `chrome://extensions`. Internal pages (`chrome://…`) and the Chrome Web Store can never be read.
 
-Les données ne transitent que entre votre navigateur et le fournisseur choisi : pas de serveur Quill, pas de télémétrie.
+Data only travels between your browser and the provider you chose: no Quill server, no telemetry.
 
 ## Structure
 
 ```
 Quill-Chrome/
 ├── manifest.json        Manifest V3
-├── background.js        Service worker : icône → panneau, menus contextuels
+├── background.js        Service worker: icon → panel, context menus
 ├── core/
-│   ├── API.js           ⇐ copie de plugin/html/API.js de Quill
-│   ├── providers.js     ⇐ copie de plugin/html/providers.js de Quill
-│   ├── compat.js        expose `browser` sur `chrome` pour le cœur partagé
-│   ├── page.js          lecture de l'onglet actif
-│   ├── markdown.js      rendu Markdown sûr
-│   └── i18n.js          chaînes FR / EN
-├── sidepanel/           panneau latéral
-├── options/             page d'options
-└── _locales/            nom et description de l'extension
+│   ├── API.js           ⇐ copy of plugin/html/API.js from Quill
+│   ├── providers.js     ⇐ copy of plugin/html/providers.js from Quill
+│   ├── compat.js        exposes `browser` on top of `chrome` for the shared core
+│   ├── page.js          reads the active tab
+│   ├── markdown.js      safe Markdown renderer
+│   └── i18n.js          FR / EN strings
+├── sidepanel/           side panel
+├── options/             options page
+└── _locales/            extension name and description
 ```
 
-`core/API.js` et `core/providers.js` sont **identiques** à ceux de [Quill pour Thunderbird](https://github.com/mikecastrodemaria/Quill) : toute correction de la couche fournisseurs doit être reportée dans les deux (la v0.3 prévoit un dossier partagé et un script de build).
+`core/API.js` and `core/providers.js` are **identical** to those of [Quill for Thunderbird](https://github.com/mikecastrodemaria/Quill) and Quill-Firefox: any fix to the provider layer must be applied to all of them (v0.3 plans a shared folder and a build script).
 
-## Empaqueter
+## Package
 
 ```powershell
 Compress-Archive -Path manifest.json,background.js,styles.css,core,sidepanel,options,images,_locales -DestinationPath quill-chrome-0.1.0.zip -Force
 ```
+
+## License
+
+GPL-3.0 — Supersonique Studio SARL.
